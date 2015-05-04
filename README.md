@@ -19,3 +19,4 @@ means the the host will listen on port 80 which is linked to port 8080 inside th
 - [ ] Allow plugin of data (expose data volume)
 - [ ] Allow mail to be configured (link to an postfix/sendmail docker)
 - [ ] Auto create an admi user using moin command line
+- [ ] Allow connection with fail2ban docker to check bad login attempts
