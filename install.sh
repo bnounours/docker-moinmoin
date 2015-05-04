@@ -43,6 +43,9 @@ chmod 750 /opt/moin-$MM_VERSION/wiki/data /opt/moin-$MM_VERSION/wiki/data/pages
 echo "Create command line moin script ..." | tee -a $WORKDIR/install.log
 echo -e "#!/usr/bin/env python\n# -*- coding: iso-8859-1 -*-\nimport sys, os\nsys.path.insert(0, '/opt/moin-1.9.8')\nsys.path.insert(0, '/opt/moin-1.9.8/wiki/config/wikiconfig.py')\nfrom MoinMoin.script.moin import run\nrun()" > /opt/moin_docker
 
+chown moin. /opt/moin-$MM_VERSION/wiki/data /opt/moin-$MM_VERSION/wiki/data/pages /opt/moin-$MM_VERSION/wiki/underlay /opt/moin-$MM_VERSION/wiki/underlay/pages
+chown moin. -R /opt/moin-$MM_VERSION/wiki/data/pages /opt/moin-$MM_VERSION/wiki/underlay/pages
+chmod 750 /opt/moin-$MM_VERSION/wiki/data /opt/moin-$MM_VERSION/wiki/data/pages
+
 echo "Writing Supervisor Conf" | tee -a $WORKDIR/install.log 
 echo "[program:moinmoin]\ncommand=/usr/bin/python /opt/moin-$MM_VERSION/wikiserver.py\nuser=moin\nredirect_stderr=true" > /etc/supervisor/conf.d/moin.conf 
-
